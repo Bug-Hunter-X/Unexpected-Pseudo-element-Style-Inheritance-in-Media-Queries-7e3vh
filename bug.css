@@ -1,0 +1,16 @@
+The following CSS code snippet demonstrates an uncommon issue where a pseudo-element selector, such as `::before` or `::after`, is used incorrectly within a media query.  The issue occurs when the styles defined for the pseudo-element are inadvertently overwritten by subsequent styles applied in a different media query, or even without a media query.
+
+```css
+.element::before {
+  content: "Text";
+  color: blue;
+}
+
+@media (min-width: 768px) {
+  .element {
+    color: red;
+  }
+}
+```
+
+In this example, the `::before` pseudo-element's `color` property is set to `blue`.  However, when the viewport width exceeds 768px, the `color` property of the `.element` itself is set to `red`, which also affects the `::before` pseudo-element's color. In this case, the `::before` inherits the `color: red` rather than keeping its original `blue`. This is an unexpected and difficult-to-debug error for beginners.
