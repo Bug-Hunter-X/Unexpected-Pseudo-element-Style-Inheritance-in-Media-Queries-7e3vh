@@ -1,0 +1,19 @@
+The solution involves explicitly restating styles for the pseudo-element within the media query to avoid inheritance issues.
+
+```css
+.element::before {
+  content: "Text";
+  color: blue;
+}
+
+@media (min-width: 768px) {
+  .element {
+    color: red;
+  }
+  .element::before {
+    color: blue; /* Restated color for the pseudo-element */
+  }
+}
+```
+
+By explicitly restating `color: blue` for `.element::before` within the media query, we override any inherited changes from the parent element and maintain the intended styling for the pseudo-element across different screen sizes.
